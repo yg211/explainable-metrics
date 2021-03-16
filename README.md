@@ -6,9 +6,9 @@ This project provides a method that can
 
 ![example-use-case](docs/expl-sts-example.png)
 
-See [example-link](docs/example.ipynb) for more example use cases.
+In the example above, it shows that the contribution of word "*Bordeaux*" is negative, suggesting that its appearance *harms* the similarity score. By highlighting the *negative-contribution* words, the *major differences* of the sentences can be identified. More examples can be found at [docs/example](docs/example.ipynb).
 
-Contact person: Yang Gao, yang.gao@rhul.ac.uk
+Contact person: Yang Gao, Royal Holloway, University of London, yang.gao@rhul.ac.uk
 
 https://sites.google.com/site/yanggaoalex/home
 
