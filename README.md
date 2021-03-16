@@ -1,12 +1,12 @@
 # Explainable STS
 
 This project provides a method that can 
-* **measure the semantic similarity** between sentence pairs, by producing a score between 0 and 1; and  
-* **explain the produced semantic similarity score**, by showing the **contribution** of each word in a sentence.
+* **measure the semantic similarity** between sentence pairs; and  
+* **explain the produced score**, by showing the **contribution** of each word in a sentence.
 
 ![example-use-case](docs/expl-sts-example.png)
 
-See *docs/example.ipynb* for more example use cases.
+See [example-link](docs/example.ipynb) for more example use cases.
 
 Contact person: Yang Gao, yang.gao@rhul.ac.uk
 
