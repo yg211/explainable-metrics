@@ -6,7 +6,7 @@ This project provides a method that can
 
 ![example-use-case](docs/expl-sts-example.png)
 
-In the example above, it shows that the contributions of words *Bordeaux* and *Luzon* are negative, suggesting that their appearance *harms* the similarity score.  More examples can be found at [example](docs/example.ipynb).
+In the example above, it shows that the contributions of words *Bordeaux* and *Luzon* are negative, suggesting that their appearance *harms* the similarity score.  More examples can be found at [example](example.ipynb).
 
 Contact person: [Yang Gao](https://sites.google.com/site/yanggaoalex/home)@Royal Holloway, Unversity of London. Don't hesitate to drop me an e-mail if something is broken or if you have any questions
 
