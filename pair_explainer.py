@@ -1,18 +1,18 @@
-import sys
-sys.path.append('../')
-
 from nltk.tokenize import word_tokenize
 import pandas as pd
 import numpy as np
 import shap
-from bert_sim import BertSTSModel
 import os
 import shutil
 import subprocess
 
+from sts_wrapper.psbert_wrapper import PSBertWrapper
+from sts_wrapper.sbert_wrapper import SBertWrapper
+from sts_wrapper.bertscore_wrapper import BertScoreWrapper
+
 class STSWrapper():
-    def __init__(self, trained_model, bert_type, checkpoint, batch_size, gpu, tokenizer='nltk'):
-        self.sts_model = BertSTSModel(gpu=gpu,batch_size=batch_size,bert_type=bert_type,model_path=trained_model, cp=checkpoint)
+    def __init__(self, sts_model, tokenizer='nltk'):
+        self.sts_model = sts_model
         if tokenizer == 'nltk': self.tokenizer = word_tokenize
         elif tokenizer == 'split': self.tokenizer = self._split_tokenizer
             
@@ -25,7 +25,7 @@ class STSWrapper():
             s1,s2 = pair[0].split('[SEP]')
             batch.append( (s1,s2) )
 
-        scores = self.sts_model(batch)[0].reshape(1,-1)[0]
+        scores = self.sts_model(batch)
         return scores
 
     def _tokenize_sent(self, sentence):
@@ -65,42 +65,30 @@ class STSWrapper():
 
 
 class ExplainableSTS():
-    def __init__(self, trained_model=None, bert_type='bert-large', checkpoint=False, batch_size=8, gpu=True):
-        model_path = self.get_model_path(trained_model)
-        self.wrapper = STSWrapper(model_path, bert_type, checkpoint, batch_size, gpu)
+    def __init__(self, wanted_sts_model):
+        if wanted_sts_model == 'sbert':
+            sts_model = SBertWrapper()
+        elif wanted_sts_model == 'pair-bert':
+            sts_model = PSBertWrapper()
+        elif wanted_sts_model == 'bert-score':
+            sts_model = BertScoreWrapper()
+
+        self.wrapper = STSWrapper(sts_model)
 
     def __call__(self, sent1, sent2):
         s1 = ' '.join(self.wrapper.tokenizer(sent1))
         s2 = ' '.join(self.wrapper.tokenizer(sent2))
-        return self.wrapper.sts_model([(s1,s2)])[0].reshape(1,-1)[0][0]
+        return self.wrapper.sts_model([(s1,s2)])[0]
 
     def explain(self, sent1, sent2, plot=False):
         explainer = shap.Explainer(self.wrapper, self.wrapper.mask_model)
         value = explainer(self.wrapper.build_feature(sent1, sent2))
-        if plot: shap.plots.waterfall(value[0])
+        if plot: shap.waterfall_plot(value[0])
         all_tokens = [] 
         all_tokens += ['s1_'+t for t in self.wrapper.tokenizer(sent1)] 
         all_tokens += ['s2_'+t for t in self.wrapper.tokenizer(sent2)] 
 
         return [(token,sv) for token, sv in zip(all_tokens,value[0].values)]
-
-    def get_model_path(self, trained_model):
-
-        link = 'https://www.dropbox.com/s/u9lziufawsxo7kz/bert_large-equal_newhans_sts.state_dict'
-        model_dir = './.sts_model/'
-        default_model_path = os.path.join(model_dir,'bert_large-equal_newhans_sts.state_dict')
-
-
-        if trained_model is None:
-            if os.path.isfile(default_model_path): return default_model_path
-            else:
-                if not os.path.exists(model_dir): os.makedirs(model_dir)
-                process = subprocess.Popen(['wget','-O', default_model_path, link], stdout=subprocess.PIPE)
-                output, error = process.communicate()
-                return default_model_path
-        else:
-            assert os.path.isfile(trained_model) 
-            return trained_model
 
 
 

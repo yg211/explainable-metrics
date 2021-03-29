@@ -11,14 +11,14 @@ In the example above, it shows that the contributions of words *Bordeaux* and *L
 Contact person: [Yang Gao](https://sites.google.com/site/yanggaoalex/home)@Royal Holloway, Unversity of London. Don't hesitate to drop me an e-mail if something is broken or if you have any questions
 
 ## STS Model
-Our semantic similarity measure model was developed based on BERT-large. It was pre-trained with SNLI and MLI, and fine-tuned on the [STSb dataset](https://ixa2.si.ehu.eus/stswiki/index.php/STSbenchmark) and a dataset adapted from [HANS](https://github.com/tommccoy1/hans). Experiments show it performs better than the SOTA STS model, [SBERT](https://github.com/UKPLab/sentence-transformers), on the STSb benchmark. Our model is particularly better at rating sentences that *share many words but deliver different meanings*,  as the table below shows. 
+Our semantic similarity measure model was developed based on BERT-large. It was pre-trained with SNLI and MLI, and fine-tuned on the [STSb dataset](https://ixa2.si.ehu.eus/stswiki/index.php/STSbenchmark) and a dataset adapted from [HANS](https://github.com/tommccoy1/hans). Experiments show it performs better than the SOTA STS model, [SBERT](https://github.com/UKPLab/sentence-transformers) and [BertScore](), on the STSb benchmark. Our model is particularly better at rating sentences that *share many words but deliver different meanings*,  as the table below shows. 
 
-| Sentence Pair | SBERT Score | Our Score | 
-|---------------|-------------|-----------|
-|'Charlton coach Guy Luzon had said on Monday', 'Charlton coach Bordeaux had said on Monday' | .672 | .534 |
-|'Snow was predicted later in the weekend for Atlanta and areas even further south.', 'Snow wasn’t predicted later in the weekend for Atlanta and areas even further south.' | .683 | .416 |
-|'Tom is his father', 'Tom is her dad' | .926 | .554 |
-|'Her birthday was in July', 'Her birthday was before July' | .761 | .576 |
+| Sentence Pair | BertScore | SBERT Score | Our Score | 
+|---------------|-------------|-----------|-----------|
+|'Charlton coach Guy Luzon had said on Monday', 'Charlton coach Bordeaux had said on Monday' | .897 | .672 | .534 |
+|'Snow was predicted later in the weekend for Atlanta and areas even further south.', 'Snow wasn’t predicted later in the weekend for Atlanta and areas even further south.' | .906 | .683 | .416 |
+|'Tom is his father', 'Tom is her dad' | .878 | .926 | .554 |
+|'Her birthday was in July', 'Her birthday was before July' | .636 | .761 | .576 |
 
 
 ## Explanations
