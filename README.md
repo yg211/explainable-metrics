@@ -11,7 +11,7 @@ In the example above, it shows that the contributions of words *Bordeaux* and *L
 Contact person: [Yang Gao](https://sites.google.com/site/yanggaoalex/home)@Royal Holloway, Unversity of London. Don't hesitate to drop me an e-mail if something is broken or if you have any questions
 
 ## STS Model
-Our semantic similarity measure model was developed based on BERT-large. It was pre-trained with SNLI and MLI, and fine-tuned on the [STSb dataset](https://ixa2.si.ehu.eus/stswiki/index.php/STSbenchmark) and a dataset adapted from [HANS](https://github.com/tommccoy1/hans). Experiments show it performs better than the SOTA STS model, [SBERT](https://github.com/UKPLab/sentence-transformers) and [BertScore](), on the STSb benchmark. Our model is particularly better at rating sentences that *share many words but deliver different meanings*,  as the table below shows. 
+Our semantic similarity measure model was developed based on BERT-large. It was pre-trained with SNLI and MLI, and fine-tuned on the [STSb dataset](https://ixa2.si.ehu.eus/stswiki/index.php/STSbenchmark) and a dataset adapted from [HANS](https://github.com/tommccoy1/hans). Experiments show it performs better than the SOTA STS model, [SBERT](https://github.com/UKPLab/sentence-transformers) and [BertScore](https://openreview.net/pdf?id=SkeHuCVFDr), on the STSb benchmark. Our model is particularly better at rating sentences that *share many words but deliver different meanings*,  as the table below shows. 
 
 | Sentence Pair | BertScore | SBERT Score | Our Score | 
 |---------------|-------------|-----------|-----------|
