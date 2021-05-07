@@ -6,7 +6,7 @@ from transformers import *
 import torch
 
 
-class BertScoreWrapper():
+class BertScoreModel():
     def __init__(self,metric='f1',gpu=True):
         self.tokenizer = BertTokenizer.from_pretrained('bert-large-uncased')
         self.model = BertModel.from_pretrained('bert-large-uncased')

@@ -6,9 +6,9 @@ import os
 import shutil
 import subprocess
 
-from sts_wrapper.psbert_wrapper import PSBertWrapper
-from sts_wrapper.sbert_wrapper import SBertWrapper
-from sts_wrapper.bertscore_wrapper import BertScoreWrapper
+from sts_models.psbert_model import PSBertModel
+from sts_models.sbert_model import SBertModel
+from sts_models.bertscore_model import BertScoreModel
 
 class STSWrapper():
     def __init__(self, sts_model, tokenizer='nltk'):
@@ -67,11 +67,11 @@ class STSWrapper():
 class ExplainableSTS():
     def __init__(self, wanted_sts_model):
         if wanted_sts_model == 'sbert':
-            sts_model = SBertWrapper()
+            sts_model = SBertModel()
         elif wanted_sts_model == 'pair-bert':
-            sts_model = PSBertWrapper()
+            sts_model = PSBertModel()
         elif wanted_sts_model == 'bert-score':
-            sts_model = BertScoreWrapper()
+            sts_model = BertScoreModel()
 
         self.wrapper = STSWrapper(sts_model)
 

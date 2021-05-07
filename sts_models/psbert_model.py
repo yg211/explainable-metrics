@@ -1,7 +1,7 @@
 import os
-from sts_wrapper.psbert import BertSTSModel
+from sts_models.psbert import BertSTSModel
 
-class PSBertWrapper():
+class PSBertModel():
     def __init__(self, trained_model=None, bert_type='bert-large', checkpoint=False, batch_size=8, gpu=True):
         model_path = self._get_model_path(trained_model)
         self.sts_model = BertSTSModel(gpu=gpu,batch_size=batch_size,bert_type=bert_type,model_path=model_path, cp=checkpoint)
