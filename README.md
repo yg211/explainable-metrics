@@ -4,7 +4,7 @@ This project aims at *explaining* state-of-the-art NLG metrics, including
 * Monolingual metrics, in particular [BertScore](https://openreview.net/forum?id=SkeHuCVFDr) and [SBERT](https://github.com/UKPLab/sentence-transformers); and
 * Crosslingual metrics, in particular [XMoverScore](https://github.com/AIPHES/ACL20-Reference-Free-MT-Evaluation).
 
-We provide explanations by *breaking down* the similarity score to show the *contribution* of each word. The computation was performed by using the [SHAP](https://github.com/slundberg/shap) method.  
+We provide explanations by *breaking down* the score to show the *contribution* of each word. The break down scores are computed using the [SHAP](https://github.com/slundberg/shap) method.  
 
 ![sts-example](docs/expl-sts-example.png)
 
