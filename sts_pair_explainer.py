@@ -78,7 +78,7 @@ class ExplainableSTS():
     def __call__(self, sent1, sent2):
         s1 = ' '.join(self.wrapper.tokenizer(sent1))
         s2 = ' '.join(self.wrapper.tokenizer(sent2))
-        return self.wrapper.sts_model([(s1,s2)])[0]
+        return self.wrapper.sts_model([(s1, s2)])[0]
 
     def explain(self, sent1, sent2, plot=False):
         explainer = shap.Explainer(self.wrapper, self.wrapper.mask_model)
